@@ -1,0 +1,356 @@
+/* ==========================================================================
+   Thung Dong Farm Stay — site styles
+   Structure:  1. Tokens  2. Base  3. Header/Nav  4. Layout  5. Components
+               6. Page pieces  7. Footer  8. Responsive
+   ========================================================================== */
+
+/* 1. TOKENS ================================================================ */
+:root {
+  /* Colour — warm green-tinted paper, forest ink, dusty lotus rose */
+  --paper:       #F1EEE2;
+  --paper-deep:  #E7E3D3;
+  --paper-dark:  #21372B;
+  --ink:         #21372B;
+  --ink-soft:    #4C6152;
+  --leaf:        #5C7F52;
+  --rose:        #B5626F;
+  --rose-deep:   #914854;
+  --gold:        #A8842F;
+  --rule:        #C7C1AC;
+
+  /* Type */
+  --display: "Fraunces", Georgia, serif;
+  --text: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Measure + rhythm */
+  --measure: 62ch;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --stack: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+/* 2. BASE ================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.6em;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.3rem, 6vw, 4rem); font-variation-settings: "SOFT" 30, "WONK" 1; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); }
+h3 { font-size: 1.2rem; letter-spacing: 0; }
+
+p { margin: 0 0 1.1em; max-width: var(--measure); }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--rose-deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--rose-deep);
+  outline-offset: 3px;
+}
+
+img { max-width: 100%; display: block; }
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--ink); color: var(--paper); padding: .75rem 1rem;
+}
+.skip:focus { left: 1rem; top: 1rem; z-index: 100; }
+
+/* 3. HEADER / NAV ========================================================== */
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  padding: 1rem var(--gutter);
+}
+.masthead-inner {
+  max-width: 1180px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+}
+
+.wordmark {
+  display: flex; align-items: center; gap: .75rem;
+  font-family: var(--display); font-size: 1.15rem; line-height: 1.1;
+  color: var(--ink); text-decoration: none;
+}
+.wordmark:hover { color: var(--leaf); }
+.wordmark small {
+  display: block; font-family: var(--text); font-size: .72rem;
+  letter-spacing: .02em; color: var(--ink-soft);
+}
+/* Logo placeholder — replace the span with an <img> */
+.logo-slot {
+  width: 46px; height: 46px; flex: none;
+  border: 1px dashed var(--leaf); border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--text); font-size: .58rem; font-style: italic; color: var(--leaf);
+}
+
+.nav { display: flex; align-items: center; gap: 1.6rem; }
+.nav a {
+  color: var(--ink); text-decoration: none; font-size: .95rem;
+  padding-bottom: 2px; border-bottom: 1px solid transparent;
+}
+.nav a:hover { border-bottom-color: var(--leaf); }
+.nav a[aria-current="page"] { border-bottom-color: var(--rose); color: var(--rose-deep); }
+
+.nav-toggle {
+  display: none; background: none; border: 1px solid var(--rule);
+  color: var(--ink); font-family: var(--text); font-size: .9rem;
+  padding: .45rem .8rem; cursor: pointer;
+}
+
+/* 4. LAYOUT ================================================================ */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter); }
+.band { padding-block: var(--stack); }
+.band-tint { background: var(--paper-deep); }
+.band-dark { background: var(--paper-dark); color: var(--paper); }
+.band-dark h2, .band-dark h3 { color: var(--paper); }
+.band-dark a { color: #E8BFC6; }
+
+/* The notebook spread: text column + true margin for asides */
+.spread {
+  display: grid;
+  grid-template-columns: minmax(0, var(--measure)) minmax(0, 17rem);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.spread > .margin { padding-top: .4rem; }
+
+/* 5. COMPONENTS ============================================================ */
+
+/* Marginalia — Ae's asides, set in the outer column */
+.aside-note {
+  font-family: var(--display);
+  font-size: 1.02rem; line-height: 1.5; font-style: italic;
+  color: var(--ink-soft);
+  border-top: 2px solid var(--gold);
+  padding-top: .8rem;
+  margin-bottom: 2rem;
+}
+.aside-note b { font-style: normal; font-weight: 600; color: var(--ink); display: block; }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: var(--rose-deep); color: #fff;
+  font-family: var(--text); font-size: 1rem; font-weight: 600;
+  padding: .85rem 1.6rem; border: 1px solid var(--rose-deep);
+  text-decoration: none;
+}
+.btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+.btn-quiet {
+  background: none; color: var(--ink); border-color: var(--ink);
+}
+.btn-quiet:hover { background: var(--ink); color: var(--paper); }
+.btn-row { display: flex; flex-wrap: wrap; gap: .9rem; align-items: center; margin-top: 1.8rem; }
+
+/* Image placeholders — swap the whole <div> for an <img> */
+.img-slot {
+  background: var(--paper-deep);
+  border: 1px dashed var(--leaf);
+  border-radius: 2px;
+  display: grid; place-items: center; text-align: center;
+  padding: 1.5rem;
+  color: var(--leaf); font-size: .88rem; font-style: italic;
+  aspect-ratio: 4 / 3;
+}
+.band-tint .img-slot { background: var(--paper); }
+.img-slot.wide { aspect-ratio: 16 / 9; }
+.img-slot.tall { aspect-ratio: 3 / 4; }
+.img-slot.square { aspect-ratio: 1 / 1; }
+.img-slot span { display: block; max-width: 24ch; }
+
+figure { margin: 0 0 2rem; }
+figcaption {
+  font-size: .88rem; color: var(--ink-soft);
+  padding-top: .55rem; border-top: 1px solid var(--rule); margin-top: .55rem;
+}
+
+/* Editor notes — visible only during build. Delete before launch. */
+.note {
+  border-left: 3px dashed var(--rose);
+  background: rgba(181, 98, 111, .07);
+  padding: .7rem 1rem; margin: 1.4rem 0;
+  font-size: .9rem; color: var(--rose-deep);
+  max-width: var(--measure);
+}
+.note b { color: var(--rose-deep); }
+
+/* Pull quote / guest voice */
+.guest {
+  font-family: var(--display); font-size: 1.28rem; line-height: 1.45;
+  border-top: 2px solid var(--rose); padding-top: 1rem;
+  margin: 0; max-width: 40ch;
+}
+.guest footer {
+  font-family: var(--text); font-size: .85rem; font-style: normal;
+  color: var(--ink-soft); margin-top: .8rem;
+}
+.guest-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; }
+
+/* Plain fact list — label left, value right, hairline between */
+.facts { margin: 0; padding: 0; max-width: var(--measure); }
+.facts div {
+  display: flex; justify-content: space-between; gap: 1.5rem;
+  padding: .65rem 0; border-bottom: 1px solid var(--rule);
+}
+.facts dt { color: var(--ink-soft); }
+.facts dd { margin: 0; text-align: right; font-weight: 600; }
+.band-dark .facts div { border-bottom-color: rgba(241,238,226,.22); }
+.band-dark .facts dt { color: #B9C9BC; }
+
+/* Rates table */
+.rates { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .98rem; }
+.rates caption { text-align: left; color: var(--ink-soft); font-size: .9rem; padding-bottom: .7rem; }
+.rates th, .rates td { padding: .8rem .6rem; border-bottom: 1px solid var(--rule); text-align: left; }
+.rates thead th { border-bottom: 2px solid var(--ink); font-weight: 600; font-size: .9rem; }
+.rates td.num, .rates th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.rates tbody th { font-weight: 500; }
+
+/* Room block */
+.room { padding-block: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid var(--rule); }
+.room:first-of-type { border-top: 0; padding-top: 0; }
+.room-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1.5rem;
+}
+.room-head h3 { font-size: clamp(1.45rem, 3vw, 1.9rem); margin-bottom: .2rem; }
+.room-price { font-family: var(--display); font-size: 1.15rem; color: var(--rose-deep); white-space: nowrap; }
+.room-price small { font-family: var(--text); font-size: .78rem; color: var(--ink-soft); display: block; text-align: right; }
+.sleeping {
+  border-left: 3px solid var(--leaf); padding: .2rem 0 .2rem 1rem;
+  margin: 1.2rem 0; max-width: var(--measure);
+}
+
+/* Day-by-day rhythm on Farm Life — the time sits in the margin */
+.hours { border-top: 1px solid var(--rule); padding-top: 1.6rem; margin-top: 2.4rem; }
+.hour-label {
+  font-family: var(--display); font-size: 1.05rem; font-style: italic;
+  color: var(--leaf); margin: 0 0 .6rem;
+}
+
+/* Itinerary */
+.day { margin-bottom: 2.4rem; }
+.day h3 { border-bottom: 1px solid var(--rule); padding-bottom: .4rem; }
+.day ul { margin: 0; padding-left: 1.1rem; max-width: var(--measure); }
+.day li { margin-bottom: .5rem; }
+
+/* FAQ */
+.faq { max-width: var(--measure); }
+.faq details { border-bottom: 1px solid var(--rule); padding: 1rem 0; }
+.faq summary {
+  font-family: var(--display); font-size: 1.1rem; cursor: pointer;
+  list-style: none; display: flex; justify-content: space-between; gap: 1rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--rose); font-size: 1.3rem; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin-top: .8rem; }
+
+/* Enquiry block */
+.enquiry { border: 1px solid var(--rule); padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--paper); }
+.band-tint .enquiry { background: var(--paper); }
+.enquiry ul { margin: 0 0 1.4rem; padding-left: 1.1rem; }
+.enquiry li { margin-bottom: .35rem; }
+
+/* Gallery grid */
+.grid-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.2rem; }
+
+/* 6. PAGE PIECES =========================================================== */
+
+/* Hero — photo laid down first, headline overlapping onto the paper below */
+.hero { padding-top: clamp(1.5rem, 4vw, 2.5rem); }
+.hero-figure .img-slot { aspect-ratio: 21 / 9; }
+.hero-plate {
+  background: var(--paper);
+  margin: -3.5rem auto 0;
+  max-width: 46rem;
+  position: relative;
+  padding: clamp(1.5rem, 4vw, 2.6rem) clamp(1.2rem, 4vw, 2.6rem) 0;
+  border-top: 3px solid var(--rose);
+}
+.hero-plate h1 { margin-bottom: .5rem; }
+.hero-sub { font-size: 1.1rem; color: var(--ink-soft); max-width: 48ch; }
+.hero-count {
+  font-family: var(--display); font-style: italic; font-size: 1.25rem;
+  color: var(--leaf); margin: 1.4rem 0 .3rem;
+}
+.hero-price { font-size: 1rem; margin-bottom: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-plate { animation: rise .8s cubic-bezier(.2,.7,.3,1) both; }
+  @keyframes rise { from { transform: translateY(1.5rem); opacity: 0; } to { transform: none; opacity: 1; } }
+}
+
+/* Page opener for inner pages */
+.opener { padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem); }
+.opener p { font-size: 1.12rem; color: var(--ink-soft); }
+
+/* Ae's introduction */
+.voice p { font-size: 1.1rem; }
+.voice .signoff { font-family: var(--display); font-style: italic; font-size: 1.2rem; color: var(--leaf); }
+
+/* 7. FOOTER ================================================================ */
+.footer { background: var(--paper-dark); color: var(--paper); padding-block: var(--stack) 2.5rem; }
+.footer a { color: #E8BFC6; }
+.footer-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(241,238,226,.22);
+}
+.footer h3 { font-size: 1.05rem; margin-bottom: .7rem; }
+.footer ul { list-style: none; margin: 0; padding: 0; }
+.footer li { margin-bottom: .4rem; }
+.footer .fine {
+  padding-top: 1.5rem; font-size: .85rem; color: #B9C9BC;
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
+}
+
+/* 8. RESPONSIVE ============================================================ */
+@media (max-width: 900px) {
+  .spread { grid-template-columns: 1fr; gap: 2rem; }
+  .aside-note { margin-bottom: 1.4rem; }
+  .hero-plate { margin-top: -2rem; }
+
+  .nav-toggle { display: block; }
+  .nav {
+    display: none; position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--paper); border-bottom: 1px solid var(--rule);
+    flex-direction: column; align-items: flex-start; gap: 0;
+    padding: .5rem var(--gutter) 1.2rem; z-index: 20;
+  }
+  .nav.open { display: flex; }
+  .nav a { padding: .7rem 0; width: 100%; border-bottom: 1px solid var(--rule); }
+  .masthead { position: relative; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .hero-figure .img-slot { aspect-ratio: 4 / 5; }
+  .room-head { flex-direction: column; }
+  .room-price, .room-price small { text-align: left; }
+}
+
+@media print {
+  .nav, .nav-toggle, .note, .btn { display: none; }
+  body { background: #fff; }
+}
