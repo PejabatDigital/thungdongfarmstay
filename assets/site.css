@@ -181,6 +181,9 @@ img { max-width: 100%; display: block; }
 .img-slot.square { aspect-ratio: 1 / 1; }
 .img-slot span { display: block; max-width: 24ch; }
 
+/* Once a slot holds a real <img>, fill the box and crop instead of stretching */
+img.img-slot { width: 100%; height: 100%; object-fit: cover; padding: 0; }
+
 figure { margin: 0 0 2rem; }
 figcaption {
   font-size: .88rem; color: var(--ink-soft);
