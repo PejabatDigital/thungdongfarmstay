@@ -334,7 +334,7 @@ figcaption {
 /* 8. RESPONSIVE ============================================================ */
 @media (max-width: 900px) {
   .spread { grid-template-columns: 1fr; gap: 2rem; }
-  .voice + .margin { order: -1; }
+  .voice + .margin, .flip-mobile > .margin { order: -1; }
   .spread > .margin { gap: 1.25rem; }
   .hero-plate { margin-top: -2rem; }
 
