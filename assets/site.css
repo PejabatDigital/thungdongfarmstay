@@ -127,6 +127,8 @@ img { max-width: 100%; display: block; }
 .band-dark { background: var(--paper-dark); color: var(--paper); }
 .band-dark h2, .band-dark h3 { color: var(--paper); }
 .band-dark a { color: #E8BFC6; }
+.band-dark h2 ~ p:not(.btn-row) { color: #B9C9BC; }
+.band-dark .aside-note { color: #B9C9BC; }
 
 /* The notebook spread: text column + true margin for asides */
 .spread {
@@ -250,6 +252,7 @@ figcaption {
 
 /* Day-by-day rhythm on Farm Life — the time sits in the margin */
 .hours { border-top: 1px solid var(--rule); padding-top: 1.6rem; margin-top: 2.4rem; }
+.hours:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
 .hour-label {
   font-family: var(--display); font-size: 1.05rem; font-style: italic;
   color: var(--leaf); margin: 0 0 .6rem;
@@ -278,6 +281,8 @@ figcaption {
 .band-tint .enquiry { background: var(--paper); }
 .enquiry ul { margin: 0 0 1.4rem; padding-left: 1.1rem; }
 .enquiry li { margin-bottom: .35rem; }
+.enquiry-dark { background: transparent; border-color: rgba(241,238,226,.3); color: var(--paper); }
+.enquiry-dark p { color: #B9C9BC; }
 
 /* Gallery grid */
 .grid-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.2rem; }
@@ -324,6 +329,7 @@ figcaption {
   gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(241,238,226,.22);
 }
 .footer h3 { font-size: 1.05rem; margin-bottom: .7rem; }
+.footer-grid p { color: #B9C9BC; }
 .footer ul { list-style: none; margin: 0; padding: 0; }
 .footer li { margin-bottom: .4rem; }
 .footer .fine {

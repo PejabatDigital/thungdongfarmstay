@@ -1,18 +1,29 @@
-# Thung Dong Farm Stay — rebuild
+# Thung Dong Farm Stay
 
-Static HTML prototype of the six-page structure. No build step, no dependencies.
-Open `index.html` in a browser.
+The live site: six pages, built with Jekyll and served by GitHub Pages. No
+external build step or dependencies to install — GitHub Pages builds Jekyll
+automatically on every push to `main`. To preview locally, install Jekyll and
+run `jekyll serve` from this folder.
 
 ```
-index.html            Home
-our-story.html        Ae, the farm's history, guest-built, returning guests
-rooms-rates.html      Four rooms described and priced together
-farm-life.html        A day unfolding, plus the full three-night itinerary
-plan-your-visit.html  Logistics, seasons, what to bring, FAQ, enquiry
-gallery.html          Photographs by theme, plus the two films
-assets/site.css       All styles
-assets/site.js        Mobile nav toggle — the only script
+index.html              Home
+our-story.html          Ae, the farm's history, guest-built, returning guests
+rooms-rates.html        Four rooms described and priced together
+farm-life.html          A day unfolding, plus the full three-night itinerary
+plan-your-visit.html    Logistics, seasons, what to bring, FAQ, enquiry
+gallery.html            Photographs by theme, plus the two films
+_layouts/default.html   Shared <head>, header and footer wrapper for every page
+_includes/header.html   Nav bar (aria-current driven by each page's `nav:` front matter)
+_includes/footer.html   Shared footer
+_includes/schema-*.html Per-page JSON-LD, pulled in via each page's `schema:` front matter
+assets/site.css         All styles
+assets/site.js          Mobile nav toggle, and the footer's copyright year — the only script
 ```
+
+Each page is just YAML front matter (`title`, `description`, `canonical`, and
+`nav` for the current nav-highlight) followed by its unique body content. The
+header, footer and `<head>` boilerplate live once each in `_includes/` and
+`_layouts/`, instead of being duplicated across all six files.
 
 ## Placeholders
 
@@ -75,9 +86,3 @@ The old URLs have years of accumulated links. Map every one of them:
 Keep the name, address and email identical here, on the Google Business Profile,
 and on Instagram and Facebook. That consistency is what lets an AI assistant
 answer questions about the farm with confidence.
-
-## Moving this into WordPress
-
-Two things must stay in ordinary editable text blocks, because they are what Ae
-will need to change himself: **the rates table with its effective date**, and
-**the sample itinerary**. Never bake either into an image.

@@ -1,0 +1,17 @@
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="index.html">
+      <span class="logo-slot">logo</span>
+      <span>Thung Dong<small>Farm Stay, Chiang Mai</small></span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html"{% if page.nav == "home" %} aria-current="page"{% endif %}>Home</a>
+      <a href="our-story.html"{% if page.nav == "our-story" %} aria-current="page"{% endif %}>Our story</a>
+      <a href="rooms-rates.html"{% if page.nav == "rooms-rates" %} aria-current="page"{% endif %}>Rooms &amp; rates</a>
+      <a href="farm-life.html"{% if page.nav == "farm-life" %} aria-current="page"{% endif %}>Farm life</a>
+      <a href="plan-your-visit.html"{% if page.nav == "plan-your-visit" %} aria-current="page"{% endif %}>Plan your visit</a>
+      <a href="gallery.html"{% if page.nav == "gallery" %} aria-current="page"{% endif %}>Gallery</a>
+    </nav>
+  </div>
+</header>
